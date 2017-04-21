@@ -3,7 +3,7 @@
 
 [<EntryPoint>]
 let main argv = 
-    let res = Lab.Primes |> Seq.take 4
+    let res = Lab.Factorize 360 |> Seq.map string |> String.concat ", "
     printfn "%A" res
     let s = System.Console.ReadKey()
     0 // return an integer exit code

@@ -19,9 +19,12 @@ let rec InfSeq start inc = seq {
 
 let IsPrime n =
     let f = float n
-    f % 2.0 > 0.0
-    &&
-    seq {3.0..2.0..sqrt f} |> Seq.tryFind (fun e -> f % e = 0.0) |> (=) None
+    f = 2.0 
+    || (
+        f % 2.0 > 0.0
+        &&
+        seq {3.0..2.0..sqrt f} |> Seq.tryFind (fun e -> f % e = 0.0) |> (=) None
+    )
 
 let Primes =
     let s = seq {
@@ -29,3 +32,10 @@ let Primes =
         yield! InfSeq 3 2
     }
     s |> Seq.filter IsPrime
+
+let rec Factorize (n:int) = seq {
+    if n > 1 then
+        let f = Primes |> Seq.find (fun e -> n % e = 0) |> int
+        yield f
+        yield! Factorize (n / f)
+}
