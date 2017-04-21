@@ -1,10 +1,13 @@
 ﻿module Lab
 
-let IsNumeric str = 
-    fst (System.Int32.TryParse(str))
+let chars v =
+    v |> string |> (fun e -> [for c in e -> c])
+
+let IsNumeric v = 
+    fst (System.Int32.TryParse(string(v)))
 
 let Digits v = 
-    v |> string |> (fun e -> e.ToCharArray()) |> Array.map string |> Array.where IsNumeric |> Array.map int |> Array.toList 
+    v |> string |> chars |> List.where IsNumeric |> List.map int
 
 let DigitSum v =
     v |> string |> Digits |> List.sum
