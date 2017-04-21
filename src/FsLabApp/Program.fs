@@ -3,7 +3,7 @@
 
 [<EntryPoint>]
 let main argv = 
-    let res = seq [1..10000] |> Seq.sumBy Lab.DigitSum
+    let res = Lab.Primes |> Seq.take 4
     printfn "%A" res
     let s = System.Console.ReadKey()
     0 // return an integer exit code
